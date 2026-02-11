@@ -1,0 +1,1654 @@
+/*
+ * ======================================================
+ * AUTOR: Lucas Marcus Solon
+ * GRAU: Licenciatura - 2º Ano
+ * DATA: 05/12/2025
+ * PROJETO: Instituto Synapse (PWC)
+ * ======================================================
+ */
+
+/* Remove margens e preenchimentos padrão de todos os elementos e garante que o padding não aumente a largura das caixas */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Define a base do site: fonte padrão, fundo quase preto, cor do texto e impede a barra de rolagem horizontal */
+body {
+    font-family: 'Merri';
+    background-color: #020408;
+    color: #eeeaeaea;
+    line-height: 1.6;
+    margin: 0;
+    overflow-x: hidden; /*esconde barras laterais*/ 
+    padding-top: 120px;
+}
+
+/* Variação da cor de fundo específica para a página de Parceiros */
+.partner-body {
+    background-color: #0e0e0e;
+}
+
+/* Define um container centralizado com largura máxima de 1200px para alinhar o conteúdo no meio da tela */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* --- Importação das Fontes Personalizadas --- */
+
+/* Importa a fonte Emberly Light */
+@font-face {
+    font-family: 'Emberly';
+    src: url(/fonts/Emberly-Light.ttf), format("truetype") ;
+    font-weight: normal;
+    
+}
+
+/* Importa a fonte Merriweather para textos longos */
+@font-face {
+    font-family: 'Merri';
+    src: url(/fonts/Merriweather_24pt-Light.ttf), format("truetype") ;
+    font-weight: normal;
+    
+}
+
+/* Importa a fonte Space Grotesk para títulos e números */
+@font-face {
+    font-family: 'Space';
+    src: url(/fonts/SpaceGrotesk-Bold-BF65712b4f9ac68.ttf), format("truetype");
+}
+
+/* Importa a fonte decorativa Delight */
+@font-face {
+    font-family: 'delight';
+    src: url(/fonts/delight-bold.otf), format("opentype");
+}
+
+/* Estiliza o cabeçalho: fixa-o no topo, cria o layout flexível (logo na esquerda, menu na direita) e adiciona sombra */
+header{
+    width: 100%;
+    background-color: #020408;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;/*alinhar verticamente */
+    padding: 15px 20px;
+    position: fixed; /*permite que o header fique fixo durante todo o site.*/
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o menu fique acima de tudo */
+    box-shadow: 0 2px 15px rgba(0, 240, 255, 0.1)
+}
+
+/* Define a altura fixa para o logotipo no cabeçalho */
+header img {height: 60px;}
+
+/* Organiza os itens do menu em linha horizontal com espaçamento entre eles */
+header nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estiliza os links do menu */
+.link-html a {
+    color: #EEEAEA;
+    font-family: 'Space';
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+/* Cria uma linha invisível (inicialmente largura 0) abaixo do link para o efeito de hover */
+.link-html a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00F0FF;
+    transition: 0.3s ease;
+}
+
+/* Ao passar o mouse, a linha abaixo do link cresce para 100% da largura */
+.link-html a:hover::after {
+    width: 100%;
+}
+
+/* Seção principal de introdução com gradiente de fundo escuro */
+.main-introduction {
+    background: radial-gradient(circle at center, #0f172a 0%, #020408 70%);
+    text-align: center;
+    position: relative;
+    padding: 200px 20px;
+    overflow: hidden;
+    z-index: -2;
+}
+
+/* Adiciona a imagem de sinapse (cérebro) no fundo com desfoque e transparência */
+.main-introduction::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/images/img-project/brain-synapse.png') center/contain no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /*garante que a imagem fique esticada no fundo sem cortá-la.*/
+    filter: blur(4px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Estiliza o título gigante principal */
+.title-text {
+    color: #EDEDED;
+    font-family: 'Space';
+    font-size: 130px;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Estiliza o subtítulo logo abaixo do título principal */
+.subtitle-header {
+    font-family: 'Space';
+    color: #EDEDED;
+    padding-top: 10px;
+    font-size: 30px;
+    opacity: 90%;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+/* Adiciona espaçamento superior na área de introdução */
+.introduction {
+    padding-top: 20px;
+}
+
+/* Estiliza o parágrafo da introdução da dopamina para centralizar e limitar a largura */
+.dopamine-intro p {
+    padding: 0 20px !important; /* define o padding como prioridade*/
+    font-size: 1.2rem;
+    text-align: center; 
+    width: 100%;
+}
+
+/* Define espaçamentos para a seção da dopamina */
+.dopamine-intro {
+    margin: 0;
+    padding-top: 60px;
+    padding-bottom: 50px;
+}
+
+/* Define a fonte do título da molécula */
+.mol-title {
+    font-family: 'Space';   
+}
+
+/* Container para palavras que terão o efeito de círculo desenhado em volta */
+.wrapper-destaque {
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  z-index: 1; 
+}
+
+/* Posiciona o SVG do círculo atrás do texto */
+.circulo-svg {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 110%;
+  height: 120%;
+  z-index: -1; 
+  pointer-events: none;
+}
+
+/* Configura a linha do SVG para criar a animação de "desenho" (stroke-dashoffset) */
+.caminho-circulo {
+  fill: none; 
+  stroke: #7000ff; 
+  stroke-width: 4; 
+  stroke-linecap: round; 
+  stroke-dasharray: 460; 
+  stroke-dashoffset: 460; /* Começa escondido */
+  transition: stroke-dashoffset 1.2s ease-out;
+}
+
+/* Quando a classe .animar é adicionada via JS, o traço é revelado */
+.wrapper-destaque.animar .caminho-circulo {
+  stroke-dashoffset: 0; 
+}
+
+/* Container que segura a molécula animada */
+.molecule-container {
+    position: relative;
+    width: 400px;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+/* Garante que o SVG dentro do container ocupe 100% da largura */
+#molecule-container svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Wrapper flexível para a área interativa da molécula */
+.molecule-interactive-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+/* Configurações do SVG da dopamina */
+.dopamine-svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    overflow: visible; /* Permite que o brilho (glow) saia das bordas */
+}
+
+/* --- Estilos da Interatividade Química --- */
+
+/* Define o cursor e transição suave para os grupos químicos clicáveis */
+.chemical-group {
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* Estado normal (cinza) das linhas e círculos da molécula */
+.chemical-group line, 
+.chemical-group polygon, 
+.chemical-group circle {
+    stroke: #555; 
+    transition: stroke 0.3s;
+}
+
+/* Estado normal do texto químico (ex: OH, NH2) */
+.chemical-group text {
+    fill: #777;
+    transition: fill 0.3s;
+}
+
+/* Efeito Hover: acende a cor azul neon e adiciona brilho */
+.chemical-group:hover line, 
+.chemical-group:hover polygon, 
+.chemical-group:hover circle {
+    stroke: #00F0FF; 
+    stroke-width: 4;
+    filter: drop-shadow(0 0 5px #00F0FF); 
+}
+
+.chemical-group:hover text {
+    fill: #fff;
+    filter: drop-shadow(0 0 8px #00F0FF);
+}
+
+/* Mantém o elemento "aceso" se tiver a classe ativa (útil para mobile) */
+.chemical-group.active-chem line, 
+.chemical-group.active-chem polygon, 
+.chemical-group.active-chem circle {
+    stroke: #00F0FF;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px #00F0FF);
+}
+
+/* Caixa onde aparece a explicação científica ao clicar na molécula */
+.molecule-info-box {
+    margin-top: 30px;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 120px; 
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Estilo do conteúdo do fato (inicialmente escondido) */
+.fact-content {
+    display: none;
+    animation: fadeUp 0.4s ease;
+}
+
+/* Mostra o conteúdo quando ativo */
+.fact-content.active {
+    display: block;
+}
+
+/* Título dentro da caixa de fatos */
+.fact-content h4 {
+    color: #00F0FF;
+    font-family: 'Space', sans-serif;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+/* Texto descritivo dentro da caixa de fatos */
+.fact-content p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Animação suave de entrada (sobe e aparece) */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tooltip flutuante genérico (aparece ao passar o mouse) */
+#info-box {
+    position: absolute;
+    padding: 10px 15px;
+    max-width: 220px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    font-size: 14px;
+    line-height: 1.4;
+    display: none;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Centraliza o bloco de texto de impacto */
+.impact-section div {
+    text-align: center; 
+    max-width: 800px;   
+    margin: 0 auto 60px auto; 
+}
+
+/* Título de impacto (estilo H2 mas usando span) */
+.impact-text-title {
+    display: block; 
+    font-family: 'Space', sans-serif; 
+    font-size: 3rem; 
+    color: #00F0FF;  
+    margin-bottom: 20px;
+}
+
+/* Texto corrido da seção de impacto */
+.impact-text {
+    font-size: 1.5rem; 
+    line-height: 1.6;
+    color: #EEEAEA;
+}
+
+/* --- Seção de Estatísticas (Cards) --- */
+
+/* Container geral das estatísticas */
+.stats-container {
+    padding: 80px 20px;
+    background: #0a0a0a;
+    background-color: transparent !important; 
+    border: none;
+}
+
+/* Título genérico de seções */
+.section-title {
+    text-align: center;
+    font-family: 'Space', sans-serif; 
+    font-size: 3em;
+    margin-bottom: 60px;
+    color: #fefefe;
+}
+
+/* Grid responsivo para os cards de estatísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Card individual de estatística */
+.stat-card {
+    background: linear-gradient(145deg, #111, #1a1a1a);
+    border: 1px solid #222;
+    border-radius: 20px;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+/* Cria a borda brilhante degradê usando pseudo-elemento e máscara */
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, #00F0FF, #7F8FA6, #ffffff);
+    border-radius: 20px;
+    padding: 2px; /* Espessura da borda */
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff, #fff);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff, #fff);
+    mask-composite: exclude;
+    opacity: 0.3; 
+    transition: opacity 0.5s ease;
+}
+
+/* Efeito de levitação e brilho ao passar o mouse no card */
+.stat-card:hover {
+    transform: translateY(-10px);
+    background: #0a0a0a;
+    box-shadow: 0 10px 40px rgba(74, 144, 226, 0.1); 
+}
+
+/* Aumenta a opacidade da borda ao passar o mouse */
+.stat-card:hover::before {
+    opacity: 1; 
+}
+
+/* Estilo do número grande na estatística com gradiente no texto */
+.stat-number {
+    font-family: 'Space', sans-serif;
+    font-size: 4em;
+    display: block;
+    background: linear-gradient(45deg, #00F0FF, #eee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+/* Rótulo da estatística (ex: "Pacientes") */
+.stat-label {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* Descrição pequena da estatística */
+.stat-desc {
+    color: #aaa;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+/* Classe utilitária para esconder cards que serão revelados depois */
+.hidden-card {
+    display: none; 
+    opacity: 0;
+    animation: fadeReveal 0.8s forwards; 
+}
+
+/* Animação que faz o card aparecer suavemente de baixo para cima */
+@keyframes fadeReveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Centraliza container de botões */
+.btn-container { text-align: center; }
+
+/* Botão estilo Neon */
+.btn-neon {
+    background: transparent;
+    border: 1px solid #00F0FF;
+    color: #00F0FF;
+    padding: 12px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: 0.3s;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Efeito Hover do botão neon */
+.btn-neon:hover {
+    background: #00F0FF;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.6);
+}
+
+/* Seção do mapa cerebral interativo */
+.science-section {
+    padding: 0 80px;
+    background-color: transparent !important;
+}
+
+/* Caixa escura que envolve o cérebro e os textos */
+.box-science {
+    background-color: #181818; 
+    border: 1px solid #333;    
+    border-radius: 40px;       
+    padding: 60px 40px;        
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); 
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Título da seção de ciência */
+.science-title {
+    font-family: 'Space', sans-serif;
+}
+
+/* Container flexível que coloca o cérebro ao lado do texto */
+.science-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 50px;
+    flex-wrap: wrap; 
+}
+
+/* Wrapper relativo para posicionar os hotspots sobre a imagem do cérebro */
+.brain-wrapper {
+    position: relative; 
+    width: 400px;
+    max-width: 100%;/* para telemovel*/
+}
+
+/* Imagem do cérebro */
+.brain-image {
+    width: 100%; 
+    display: block;
+}
+
+/* Pontos interativos (hotspots) posicionados sobre o cérebro */
+.hotspot {
+    position: absolute; 
+    width: 20px;
+    height: 20px;
+    background-color: #00F0FF; 
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%); /* Centraliza exato na coordenada */
+    transition: 0.3s;
+}
+
+/* Efeito ao passar o mouse ou clicar no hotspot */
+.hotspot:hover, .hotspot.active-spot {
+    transform: translate(-50%, -50%) scale(2); /*garante que vai ficar no centro*/
+    background-color: white;
+    box-shadow: 0 0 15px #00F0FF;
+}
+
+/* Cards de informação que mudam conforme o ponto clicado */
+.info-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    width: 300px;
+    display: none; /* Esconde por padrão */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Mostra o card de informação ativo */
+.info-card.active {
+    display: block; 
+    animation: fadeIn 0.5s forwards; 
+    border-color: #00F0FF; 
+}
+
+/* Animação simples de fade-in */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Títulos dentro do card de informação */
+.info-wrapper h3 {
+    font-family: 'Space', sans-serif;
+}
+
+/* Gradiente de fundo vertical para transições suaves entre seções */
+.gradient-wrapper {
+    background: linear-gradient(
+        to bottom, 
+        #020408 0%,    
+        #11151c 50%,   
+        #020408 100%   
+    );
+}
+
+/* --- Seção de Conclusão / Manifesto --- */
+
+/* Container da conclusão com gradiente final */
+.conclusion-section {
+    padding: 100px 20px;
+    background: linear-gradient(to bottom, #020408, #0a0a0a); 
+    position: relative;
+}
+
+/* Bloco de destaque no início do manifesto */
+.manifesto-highlight {
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 40px;
+}
+
+/* Título grande do manifesto */
+.highlight-title {
+    font-family: 'Space', sans-serif; 
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Texto itálico de destaque */
+.highlight-text {
+    font-family: 'Merri', serif; 
+    font-size: 1.5rem;
+    color: #7F8FA6; 
+    font-style: italic;
+}
+
+/* Corpo do texto do manifesto (leitura longa) */
+.manifesto-body {
+    max-width: 750px; 
+    margin: 0 auto;
+    font-family: 'Merri', serif;
+    font-size: 1.1rem;
+    line-height: 1.8; 
+    color: #dcdcdc;
+    text-align: justify; 
+}
+
+/* Espaçamento entre parágrafos do manifesto */
+.manifesto-body p {
+    margin-bottom: 30px;
+}
+
+/* Classe utilitária para texto azul neon em negrito */
+.text-neon {
+    color: #00F0FF;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+}
+
+/* Estilo da citação final (bloco com borda esquerda) */
+.final-quote {
+    margin-top: 50px;
+    padding: 30px;
+    border-left: 4px solid #00F0FF; 
+    background: rgba(255, 255, 255, 0.03); 
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Ajustes de tipografia para tablet/mobile na conclusão */
+@media (max-width: 768px) {
+    .highlight-title {
+        font-size: 2.5rem;
+    }
+    .highlight-text {
+        font-size: 1.2rem;
+    }
+    .manifesto-body {
+        text-align: left; 
+    }
+}
+
+/* --- Footer (Rodapé) --- */
+
+/* Container principal do rodapé */
+.site-footer {
+    background-color: #050505; 
+    padding: 80px 0 30px;
+    border-top: 1px solid #222; 
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-top: auto; 
+}
+
+/* Logo pequena no rodapé */
+.footer-logo {
+    height: 40px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* Descrição curta no rodapé */
+.footer-desc {
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+/* Títulos das colunas do rodapé */
+.footer-title {
+    font-family: 'Space', sans-serif;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* Remove marcadores da lista de links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+/* Espaçamento entre itens da lista */
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+/* Links do rodapé com transição de cor e movimento */
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Hover: link fica azul e move para a direita */
+.footer-links a:hover {
+    color: #00F0FF; 
+    transform: translateX(15px); 
+}
+
+/* Lista de informações de contato (ícone + texto) */
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+/* --- Seção de Contatos dentro do Footer ou Página --- */
+.footer-contact li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact .icon {
+    font-size: 1.2rem;
+}
+
+/* Container para os ícones de redes sociais */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Estilo dos botões redondos de redes sociais */
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 1px solid #333;
+}
+
+.social-icons a svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hover nas redes sociais: cor azul, sobe e projeta sombra */
+.social-icons a:hover {
+    background: #00F0FF;
+    border-color: #00F0FF;
+    transform: translateY(-5px); 
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+/* Linha divisória no rodapé */
+.footer-divider {
+    border-color: #222;
+    margin: 40px 0;
+}
+
+/* Área inferior do rodapé (Copyright e links legais) */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Ajustes de rodapé para dispositivos móveis */
+@media (max-width: 768px) {
+    .site-footer {
+        text-align: center;
+    }
+    
+    .footer-desc {
+        margin: 0 auto;
+    }
+    
+    .footer-contact li {
+        justify-content: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* ESTILOS DA PÁGINA INICIAL (INDEX)*/
+
+/* Tamanho do logo ciano na Home */
+.logo-cian {
+   width: 100px;
+   height: auto;
+}
+
+/* Título gigante da página inicial */
+.title-index {
+    color: #EDEDED;
+    font-family: 'Space';
+    font-size: 130px;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Remove backgrounds herdados em outras seções para a hero section da home */
+.hero-section::before {
+    display: none !important; 
+    content: none !important;
+    background-image: none !important;
+}
+
+/* Configura o fundo da Hero Section com o Mockup e máscara escura */
+.hero-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* Máscara Escura */
+        url('/images/img-project/Lightbox-Signage-Mockup.png');  /* Imagem de Fundo */
+    background-color: #000;
+    background-size: cover;
+    background-position: 30%;
+}
+
+/* Pequeno texto sobre o título (kicker) */
+.overline {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #00F0FF;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Seção da Equipe (Researchers) --- */
+
+.team-section {
+    padding: 80px 20px;
+    background-color: #0e0e0e; 
+}
+
+/* Grid flexível para os cards da equipe */
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+/* Card individual do membro da equipe */
+.team-card {
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 16px;
+    width: 300px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito Hover no Card da equipe */
+.team-card:hover {
+    transform: translateY(-10px);
+    border-color: #00F0FF;
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+}
+
+/* Container da foto de perfil (círculo) */
+.profile-img-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #333;
+    transition: 0.4s;
+}
+
+/* Imagem do perfil (inicia em preto e branco) */
+.profile-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%); 
+    transition: 0.4s;
+}
+
+/* Hover: borda da foto fica azul */
+.team-card:hover .profile-img-container {
+    border-color: #00F0FF; 
+}
+
+/* Hover: foto ganha cor e aumenta ligeiramente */
+.team-card:hover .profile-img-container img {
+    filter: grayscale(0%); 
+    transform: scale(1.1);
+}
+
+/* Nome do membro da equipe */
+.team-name {
+    font-family: 'Space', sans-serif;
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+/* Cargo do membro da equipe (texto colorido) */
+.team-role {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    color: #00F0FF; 
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+/* Biografia curta */
+.team-bio {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* ESTILOS DA PÁGINA DE PARCEIROS */
+
+/* Header visual da página de parceiros */
+.partner-introduction {
+    background: radial-gradient(circle at center, rgba(0, 240, 255, 0.5) 0%, rgb(0, 92, 99, 0.7));
+    text-align: center;
+    position: relative;
+    padding: 200px 20px;
+    overflow: hidden;
+    z-index: -2;
+}
+
+/* Background da introdução de parceiros */
+.partner-introduction::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/images/img-project/apoio-img.jpg') center/contain no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: blur(4px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Título da página de parceiros */
+.partner-title {
+    text-align: center;
+    padding: 0 80px;
+    color: #EDEDED;
+    font-family: 'Space';
+    font-size: 100px;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Subtítulo da página de parceiros */
+.partner-subtitle {
+    text-align: center;
+    font-family: 'Space';
+    color: #EDEDED;
+    padding-top: 10px;
+    font-size: 30px;
+    opacity: 90%;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+/* Container principal de parceiros com borda superior arredondada */
+.partners-section {
+    width: 100%;
+    border-radius: 60px 60px 0 0;
+    background-color: #0e0e0e;
+    padding: 100px 0;
+    overflow: hidden; 
+    margin-top: -65px; /* Sobe por cima da imagem anterior */
+    position: relative;
+    z-index: 10;
+}
+
+.alliance-section {
+    padding-bottom: 100px; 
+    position: relative;
+    z-index: 10; 
+}
+
+/* Grid dos fundadores (logos grandes) */
+.partners-grid-large {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Card de parceiro grande */
+.partner-card {
+    background: #181818;
+    border: 1px solid #333;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logotipo do parceiro com filtro preto e branco */
+.partner-logo {
+    width: 80%;       
+    height: 80px;     
+    object-fit: contain; 
+    margin-bottom: 15px; 
+    filter: grayscale(100%) brightness(0.8) contrast(1.2);
+    transition: all 0.4s ease;
+}
+
+/* Ajuste específico para o logo Max Titanium */
+#max-titanium {
+    height: 100px;
+    object-fit: contain; 
+}
+
+/* Hover: Logo ganha cor original e aumenta */
+.partner-card:hover .partner-logo {
+    filter: grayscale(0%) brightness(1); 
+    transform: scale(1.1); 
+}
+
+/* Texto descritivo do parceiro */
+.partner-desc {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.4s;
+}
+
+/* Classes utilitárias de fontes */
+.font-tech { font-family: 'Orbitron', sans-serif; font-weight: 700; }
+.font-classic { font-family: 'Cinzel', serif; }
+.font-bold { font-family: 'Space', sans-serif; }
+
+/* Efeito Hover no card de parceiro */
+.partner-card:hover {
+    border-color: #00F0FF;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(74, 144, 226, 0.1);
+    background: #1a1a1a;
+}
+
+.partner-card:hover .logo-box {
+    color: #fff; 
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.partner-card:hover .partner-desc {
+    color: #00F0FF; 
+}
+
+/* Grid de parceiros menores */
+.partners-grid-small {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Estilo do parceiro pequeno (apenas texto) */
+.small-partner {
+    padding: 20px;
+    border: 1px solid #222;
+    border-radius: 8px;
+    color: #666;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.small-partner:hover {
+    border-color: #555;
+    color: #fff;
+    background: #111;
+}
+
+/* Seção de Call to Action (Investir) */
+.invest-cta {
+    background: linear-gradient(45deg, #111, #181818);
+    padding: 80px 20px;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid #222;
+}
+
+.invest-cta h2 {
+    font-family: 'Space', sans-serif;
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.invest-cta p {
+    color: #aaa;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+/*ESTILOS DA PÁGINA DE CONTATOS */
+
+
+/* Introdução visual da página de contatos com imagem de fundo */
+.contact-introduction {
+    background: radial-gradient(circle at center, #0f172a 0%, #020408 70%);
+    text-align: center;
+    position: relative;
+    padding: 200px 20px;
+    overflow: hidden;
+    z-index: -2;
+}
+/* Imagem de fundo da introdução de contatos */
+.contact-introduction::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/images/img-project/contact-brain.png') center/contain no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: blur(2px);
+    opacity: 0.95;
+    z-index: -1;
+}
+
+.contact-section {
+    padding: 80px 20px;
+}
+
+/* Título dentro das caixas de formulário/info */
+.box-title {
+    font-family: 'Space', sans-serif;
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 15px;
+}
+
+/* Caixa escura do formulário */
+.contact-box {
+    background: #111; 
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #333;
+    height: 100%; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Espaçamento entre campos do formulário */
+.form-group {
+    margin-bottom: 25px;
+}
+
+/* Labels do formulário */
+.form-group label {
+    display: block;
+    color: #aaa;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* OVERRIDE BOOTSTRAP */
+
+/* Remove o fundo branco padrão e a borda azul feia do Bootstrap ao clicar */
+.form-control:focus {
+    background-color: #020408 !important; /* Seu fundo preto */
+    color: #fff !important;
+    border-color: #00F0FF !important; /* Sua borda neon */
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) !important; /* Seu brilho */
+}
+
+/* Garante que o input fique escuro mesmo quando não clicado */
+.form-control {
+    background-color: #0f0f0f !important; /* Cinza escuro */
+    border: 1px solid #333 !important;
+    color: #eee !important;
+    border-radius: 8px !important;
+}
+
+/* Ajusta o placeholder para não sumir */
+.form-control::placeholder {
+    color: #666 !important;
+}
+
+/* Caixa lateral com informações de contato */
+.info-box {
+    padding: 40px;
+    background: #111; 
+    border-radius: 16px;
+    border: 1px solid #333;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Lista de contatos na lateral */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Ícone circular ao lado do texto de contato */
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    color: #00F0FF;
+}
+
+.contact-list strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.contact-list p {
+    color: #888;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Container do mapa */
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+    height: 300px; 
+    margin-top: 30px;
+}
+
+/* Inverte as cores do Google Maps para ficar no tema Dark */
+.map-container iframe {
+    filter: invert(90%) hue-rotate(180deg) contrast(90%);
+    width: 100%;
+    height: 100%;
+}
+
+/* =======================================================
+   RESPONSIVIDADE (MOBILE & TABLET)
+   Aplica estas regras apenas se a tela for menor que 992px
+   ======================================================= */
+
+@media (max-width: 992px) {
+
+    /* --- Ajustes Gerais de Texto --- */
+    /* Reduz títulos gigantes para caberem na tela do celular */
+    .title-text, .partner-title, .title-index {
+        font-size: 3.5rem !important; 
+        line-height: 1.1;
+    }
+    
+    .subtitle-header, .partner-subtitle {
+        font-size: 1.2rem !important; 
+        padding: 0 10px;
+    }
+
+    /* Reduz espaçamentos verticais nas introduções */
+    .main-introduction, .partner-introduction, .contact-introduction {
+        padding: 120px 20px 80px 20px; 
+    }
+
+    /* --- Header (Menu) Mobile --- */
+    /* Empilha logo e menu verticalmente */
+    header {
+        flex-direction: column;
+        padding: 15px;
+        background-color: rgba(2, 4, 8, 0.95); 
+    }
+
+    header nav ul {
+        margin-top: 15px;
+        gap: 20px;
+        flex-wrap: wrap; /* verifica se tem espaço, se não tiver, quebra linha*/
+        justify-content: center;
+    }
+
+    /* --- Molécula Interativa Mobile --- */
+    .molecule-container {
+        width: 100%; 
+        margin: 30px auto;
+    }
+
+    .dopamine-svg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .molecule-info-box {
+        margin-top: 20px;
+        min-height: auto; 
+    }
+
+    /* --- Seção de Ciência (Cérebro) Mobile --- */
+    .science-section {
+        padding: 0 20px; 
+    }
+
+    .box-science {
+        padding: 40px 20px;
+        border-radius: 20px; 
+    }
+
+    /* Empilha cérebro e info card verticalmente */
+    .science-container {
+        flex-direction: column; 
+        gap: 30px;
+    }
+
+    .brain-wrapper {
+        width: 100%;
+        max-width: 300px; 
+        margin: 0 auto;   
+    }
+
+    .info-card {
+        width: 100%; 
+        margin-bottom: 10px;
+    }
+
+    /* --- Estatísticas Mobile --- */
+    .stats-container {
+        padding: 60px 15px;
+    }
+
+    .section-title {
+        font-size: 2rem; 
+        margin-bottom: 40px;
+    }
+
+    /* --- Parceiros & Contatos Mobile --- */
+    .partners-section {
+        border-radius: 30px 30px 0 0; 
+        padding: 60px 0;
+    }
+
+    .partners-grid-large {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-section {
+        padding: 40px 15px;
+    }
+    
+    .contact-box, .info-box {
+        padding: 25px; 
+    }
+    
+    .map-container {
+        height: 250px; 
+    }
+}
+
+/* Correção do Accordion Bootstrap para Dark Mode */
+.accordion-button:not(.collapsed) {
+    background-color: rgba(0, 240, 255, 0.1) !important;
+    color: #00F0FF !important;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+}
+.accordion-button::after {
+    filter: invert(1);
+}
+
+/* --- Ajuste Extra para Celulares Pequenos (ex: iPhone SE, etc) --- */
+@media (max-width: 480px) {
+    .title-text { font-size: 2.5rem !important; }
+    
+    header nav ul { gap: 15px; font-size: 0.9rem; }
+    
+    /* Aumenta a área de clique dos hotspots */
+    .hotspot {
+        width: 30px; 
+        height: 30px;
+    }
+
+    /* --- Responsividade: Index --- */
+    /* Remove efeito fixed para melhorar performance no scroll */
+    .hero-section {
+        background-attachment: scroll !important; 
+        padding: 60px 20px; 
+        min-height: 80vh; 
+    }
+
+    .overline {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-content .title-text {
+        margin-top: 10px;
+    }
+
+    .hero-content .subtitle-header {
+        font-size: 1.1rem !important;
+        line-height: 1.4;
+        max-width: 100% !important; 
+    }
+
+    .container[style*="padding: 100px 20px"] {
+        padding: 60px 20px !important; 
+    }
+
+    .team-section {
+        padding: 60px 20px;
+    }
+
+    .team-grid {
+        margin-top: 30px;
+    }
+
+    .team-card {
+        width: 100%; 
+        max-width: 400px; 
+        padding: 25px;
+    }
+
+    .profile-img-container {
+        width: 100px; 
+        height: 100px;
+    }
+
+    .team-name {
+        font-size: 1.5rem;
+    }
+
+    .team-role {
+        font-size: 0.85rem;
+    }
+
+    /* --- Responsividade: Parceiros --- */
+    .partner-introduction {
+        padding: 120px 20px 80px; 
+    }
+
+    .partner-title {
+        font-size: 2.5rem !important; 
+        line-height: 1.1;
+        padding: 0 10px;
+    }
+
+    .partner-subtitle {
+        font-size: 1.1rem !important;
+        padding: 0 20px;
+        margin-top: 15px;
+    }
+
+    .partners-section {
+        padding: 60px 0; 
+        margin-top: -40px; 
+        border-radius: 40px 40px 0 0; 
+    }
+
+    .partners-grid-large {
+        flex-direction: column; 
+        align-items: center; 
+        gap: 30px;
+        padding: 0 20px; 
+    }
+
+    .partner-card {
+        width: 100%;       
+        max-width: 350px;  
+        height: auto;      
+        min-height: 220px; 
+        padding: 30px 20px;
+    }
+
+    .partner-logo {
+        height: 60px; 
+        margin-bottom: 20px;
+    }
+
+    .alliance-section {
+        padding: 0 20px 60px 20px;
+    }
+
+    .partners-grid-small {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+        gap: 15px;
+    }
+
+    .small-partner {
+        text-align: center;
+        padding: 15px 10px;
+        font-size: 0.85rem; 
+    }
+
+    .invest-cta {
+        padding: 60px 20px;
+        margin-top: 30px;
+    }
+    
+    .invest-cta h2 {
+        font-size: 2rem; 
+        line-height: 1.2;
+    }
+
+    /* --- Responsividade: Contatos --- */
+    .contact-introduction {
+        padding: 120px 20px 80px; 
+    }
+
+    .contact-section {
+        padding: 40px 15px; 
+    }
+
+    .contact-box, .info-box {
+        padding: 25px; 
+        height: auto;  
+        margin-bottom: 30px; 
+    }
+
+    .box-title {
+        font-size: 1.5rem; 
+        margin-bottom: 20px;
+    }
+
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        padding: 10px; 
+        font-size: 16px; 
+    }
+
+    .contact-list li {
+        font-size: 0.9rem; 
+    }
+
+    .icon-circle {
+        width: 40px;  
+        height: 40px;
+        font-size: 1.2rem;
+        margin-right: 15px;
+        flex-shrink: 0; 
+    }
+
+    .map-container {
+        height: 250px; 
+        margin-top: 20px;
+    }
+}

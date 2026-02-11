@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse | Contactos</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="./images/synp-black.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="512x512" href="./images/synp-white.png" media="(prefers-color-scheme: dark)">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <img src="./images/img-project/logotype-synapse.png" alt="Logo Synapse">
+        <nav>
+            <ul class="link-html">
+                <li><a href="contacts.html">Início</a></li>
+                <li><a href="index.html">Sobre</a></li>
+                <li><a href="project.html">Projetos</a></li>
+                <li><a href="partner.html" class="active">Parceiros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-introduction">
+        <h1 class="title-text">FALE CONNOSCO</h1>
+        <p class="subtitle-header">Tem dúvidas sobre a investigação? Entre em contacto.</p>
+    </main>
+
+    <section class="container contact-section">
+            <div class="row gy-5">
+                
+                <div class="col-12 col-lg-6">
+                    <div class="contact-box h-100 d-flex flex-column justify-content-center"> 
+                        <h3 class="box-title">Envie uma Mensagem</h3>
+                        
+                        <form>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label text-white">Nome Completo</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="nome" placeholder="Digite seu nome">
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-white">E-mail Corporativo</label>
+                                <input type="email" class="form-control bg-dark text-white border-secondary" id="email" placeholder="nome@empresa.com">
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="mensagem" class="form-label text-white">Mensagem</label>
+                                <textarea class="form-control bg-dark text-white border-secondary" id="mensagem" rows="4" placeholder="Como podemos ajudar?"></textarea>
+                            </div>
+                        
+                            <button type="submit" class="btn btn-outline-info w-100 btn-neon mt-auto">ENVIAR MENSAGEM</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="info-box h-100">
+                        <h3 class="box-title">Onde Estamos</h3>
+                        
+                        <ul class="contact-list">
+                            <li>
+                                <div class="icon-circle">📍</div> 
+                                <div>
+                                    <strong>Localização</strong>
+                                    <p>Vila Nova de Gaia, Portugal</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-circle">📧</div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>investigacao@synapse.pt</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="map-container mt-4">
+                            <div class="ratio ratio-4x3 h-100">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.472765306767!2d-8.617013124135369!3d41.12420437133452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464dcf46cd243%3A0x848698c37047218b!2sISLA%20Gaia!5e0!3m2!1spt-PT!2spt!4v1764976113502!5m2!1spt-PT!2spt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <div class="row mt-5">
+                <div class="col-12">
+                    <h2 class="section-title mb-4 text-center">PERGUNTAS FREQUENTES</h2>
+                    
+                    <div class="accordion" id="accordionNeon">
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    O que é o Instituto Synapse?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionNeon">
+                                <div class="accordion-body text-secondary">
+                                    Somos pioneiros na união entre neurociência aplicada e tecnologia de ponta para otimização cognitiva.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Como funcionam os tratamentos?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionNeon">
+                                <div class="accordion-body text-secondary">
+                                    Utilizamos biofeedback e estimulação neural não-invasiva. Tudo monitorizado por nossa IA proprietária.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    Aceitam parcerias de pesquisa?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionNeon">
+                                <div class="accordion-body text-secondary">
+                                    Sim! Estamos sempre em busca de novos talentos e instituições parceiras. Entre em contacto abaixo.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <img src="./images/img-project/logotype-synapse.png" alt="Synapse Logo" class="footer-logo">
+                    <p class="footer-desc">O Instituto Synapse dedica-se ao estudo do comportamento humano na era digital.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="footer-title">Explorar</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="project.html">O Projeto</a></li>
+                        <li><a href="partner.html">Parceiros</a></li>
+                        <li><a href="contacts.html">Contactos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="footer-title">Contactos</h4>
+                    <ul class="footer-contact">
+                        <li><span class="icon">📍</span> Gaia, Portugal</li>
+                        <li><span class="icon">📧</span> investigacao@synapse.pt</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-bottom">
+                <p>© 2025 Instituto Synapse.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
